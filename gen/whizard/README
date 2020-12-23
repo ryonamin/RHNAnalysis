@@ -1,0 +1,24 @@
+U1XGen_UFO was copied from /home/ilc/jurina/runwhizard/testRHN/U1XGen_UFO 
+This was originally prepared by A. Das
+
+setup-whizard-2.8.5.sh was copied from
+/sw/ilc/gcc730/whizard/setup-whizard-2.8.5.sh
+
+Configuration files for whizard (sindarin file)
+  e1e1_eLpR.sin  // RHN --> e + W, left beam pol
+  e1e1_eRpL.sin  // RHN --> e + W, right beam pol 
+  e2e2_eLpR.sin  // RHN --> mu + W, left beam pol
+  e2e2_eRpL.sin  // RHN --> mu + W, right beam pol 
+  e3e3_eLpR.sin  // RHN --> tau + W, left beam pol
+  e3e3_eRpL.sin  // RHN --> tau + W, right beam pol 
+
+  common parameters:
+	ECM = 250GeV
+	M(RHN) = 20 GeV
+	W(RHN) = 0.01 GeV
+	M(Zp) = 7500 GeV
+	g1p = 0.75
+
+How to run:
+1) source setup-whizard-2.8.5.sh
+2) whizard e1e1_eLpR.sin

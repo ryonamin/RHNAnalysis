@@ -1,0 +1,81 @@
+#WHIZARD steering file by daniel.
+?vis_history = true
+?vis_channels = true
+?vis_diags = true
+?vis_diags_color = true
+
+?hadronization_active = true
+?shower_verbose = true
+?ps_fsr_active = true
+?auto_decays = true
+
+#model = SM
+model = U1XGen_UFO (ufo)
+
+MN1 = 20 GeV 
+MN2 = 20 GeV
+MN3 = 20 GeV
+
+WN1 = 1E-2 GeV
+WN2 = 1E-2 GeV
+WN3 = 1E-2 GeV
+
+VNl1x1 = sqrt(0.001)
+VNl2x2 = sqrt(0.001)
+VNl3x3 = sqrt(0.001)
+
+a1 = 0 
+b1 = 1
+
+MZp = 7500 GeV
+g1p = 0.75 
+
+MU = 0
+MD = 0
+MC = 0
+MS = 0
+MB = 0
+
+alias quark = u:d:s:c:b
+alias antiquark = "u~":"d~":"s~":"c~":"b~"
+alias neutrino = "ve~":"ve":"vm":"vm~":"vt":"vt~"
+alias electron = "e-":"e+"
+alias muon = "mu-":"mu+"
+alias tauon = "ta-":"ta+"
+
+#process proc = "e-" , "e+" => n1, n1 {$restrictions = "1+2 ~ Zp && 3+4 ~ Zp" }
+#process proc = "e-" , "e+" => n2, n2 {$restrictions = "1+2 ~ Zp && 3+4 ~ Zp" }
+process proc = "e-" , "e+" => n3, n3 {$restrictions = "1+2 ~ Zp && 3+4 ~ Zp" }
+process n1dec = "n1" => "electron", "quark", "antiquark"
+process n2dec = "n2" => "muon", "quark", "antiquark" 
+process n3dec = "n3" => "tauon", "quark", "antiquark"
+unstable n1 (n1dec)
+unstable n2 (n2dec)
+unstable n3 (n3dec)
+
+##calculate RHN width
+seed=0
+error_threshold = 1E-8
+
+
+sqrts = 250 GeV
+beams_pol_density = @(+1), @(-1)
+beams_pol_fraction = 100%, 100%
+
+
+$circe2_file="ilc250.circe"
+$circe2_design="ILC"
+?circe2_polarized = false
+#beams = "e-", "e+" 
+beams = "e-", "e+" => circe2 => isr
+
+
+integrate (proc)
+
+
+simulate (proc) {
+n_events = 10000
+$sample = "E250.Pe3qqe3qq.eRpL_MN20_MZp75"
+sample_format = lcio
+
+}
