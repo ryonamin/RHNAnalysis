@@ -3,4 +3,6 @@ so that we can process in parallel.
 
 How to use:
 Edit conf.py.
-python main.py
+python main.py          // This creates steering files.
+source init_ilcsoft.sh  // Marlin is required.
+python manyrun.py       // This processes the steering files above.
