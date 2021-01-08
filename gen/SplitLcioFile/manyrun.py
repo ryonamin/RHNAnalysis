@@ -8,7 +8,7 @@ def makeDirectory(dirname):
 	if not os.path.exists(dirname):
 		os.mkdir(dirname)
 
-utils.makeDirectory(conf.LOGDIR)
+makeDirectory(conf.LOGDIR)
 xmls = os.listdir(conf.XMLDIR)
 
 minIndex=0
