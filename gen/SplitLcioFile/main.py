@@ -3,7 +3,6 @@ import os,shutil,conf,makeSteeringFiles
 
 # This is the main script.
 
-import os,conf
 def makeDirectory(dirname):
 	if not os.path.exists(dirname):
 		os.mkdir(dirname)

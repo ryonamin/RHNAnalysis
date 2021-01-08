@@ -1,8 +1,12 @@
 #!/usr/bin/python
-import os,utils,conf
+import os,conf
 
 import signal
 signal.signal(signal.SIGINT, signal.SIG_DFL)
+
+def makeDirectory(dirname):
+	if not os.path.exists(dirname):
+		os.mkdir(dirname)
 
 utils.makeDirectory(conf.LOGDIR)
 xmls = os.listdir(conf.XMLDIR)
