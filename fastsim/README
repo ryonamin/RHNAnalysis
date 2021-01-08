@@ -1,0 +1,34 @@
+=================================================================
+= Get SGV source code 
+=================================================================
+
+svn co https://svnsrv.desy.de/public/sgv/trunk/ sgv/
+
+=================================================================
+= Compilation :
+= Follow samples/lcio/00_README
+=================================================================
+
+cd sgv
+
+# Install Pythia (Or you can use preinstalled one on KEKCC: export PYTHIA_DIR=/sw/ilc/gcc820/pythia/v6_422/lib/)
+./samples/install-pythia 
+export PYTHIA_DIR=$PWD/v6_422/lib/  
+
+# Compile SGV 
+./install
+cp samples/lcio/usesgvlcio.F95 .
+cresgvexe merge usesgvlcio "" "" "" "" "" "" ""               (for use of Pythia generator)
+cresgvexe merge usesgvlcio "-DEXTREAD" "" "" "" "" "" ""      (for use of external generator)
+
+=================================================================
+
+Setup for Run :
+export PYTHIA_DIR=/sw/ilc/gcc820/pythia/v6_422/lib/  (if you haven't set yet)
+source /sw/ilc/ilcsoft/gcc820/v02-02/init_ilcsoft.sh (LCIO is required.)
+
+How to Run (without scripts):
+sgv.steer is the configuration file to be modified.
+./usesgvlcio.exe
+
+How to Run (with scripts):
