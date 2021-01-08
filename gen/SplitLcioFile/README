@@ -1,0 +1,6 @@
+The scripts work as a file splitter to make small fractions of files
+so that we can process in parallel.
+
+How to use:
+Edit conf.py.
+python main.py

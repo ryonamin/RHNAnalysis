@@ -1,0 +1,33 @@
+<marlin>
+  <execute>
+    <processor name="DSTOutput" />
+  </execute>
+
+  <global>
+    <parameter name="LCIOInputFiles"> 
+__INPUTSLCIO__
+    </parameter>
+    <parameter name="MaxRecordNumber" value="__MAXEVT__"/>
+    <parameter name="SkipNEvents" value="__NSKIPEVT__"/>
+    <parameter name="SupressCheck" value="false"/>
+    <parameter name="Verbosity" options="DEBUG0-4,MESSAGE0-4,WARNING0-4,ERROR0-4,SILENT"> MESSAGE </parameter>
+    <parameter name="RandomSeed" value="1234567890" />
+  </global>
+
+  <processor name="DSTOutput" type="LCIOOutputProcessor">
+    <!-- DST output: drop all hits, skim MCParticles and keep final Tracks, Clusters, Vertices and  ReconstructedParticles -->
+    <parameter name="LCIOOutputFile" type="string" >
+__OUTPUTSLCIODIR__/__OUTPUTSLCIO__
+    </parameter>
+    <!--parameter name="DropCollectionTypes" type="StringVec"> 
+    </parameter-->
+    <!--parameter name="DropCollectionNames" type="StringVec">
+      PandoraPFOs
+    </parameter-->
+    <parameter name="KeepCollectionNames" type="StringVec"> 
+      MCParticle
+    </parameter>
+    <parameter name="LCIOWriteMode" type="string" value="WRITE_NEW"/>
+    <!--parameter name="SplitFileSizekB" type="int" value="1992294"/-->
+  </processor>
+</marlin>
